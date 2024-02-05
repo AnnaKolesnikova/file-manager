@@ -1,0 +1,22 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "File Manager implementation using Node.js APIs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:named": "node src/index.js -- --username=admin",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaKolesnikova/file-manager.git"
+  },
+  "author": "Hanna Ilyinchyk <github:@AnnaKolesnikova> <email:anna.ilyinchik@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnaKolesnikova/file-manager/issues"
+  },
+  "homepage": "https://github.com/AnnaKolesnikova/file-manager#readme"
+}
