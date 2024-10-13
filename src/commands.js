@@ -4,6 +4,13 @@ import { up } from "./nav/up.js";
 import { cd } from "./nav/cd.js";
 import { ls } from "./nav/ls.js";
 
+import { cat } from "./fs/cat.js";
+import { add } from "./fs/add.js";
+import { rn } from "./fs/rn.js";
+import { cp } from "./fs/cp.js";
+import { mv } from "./fs/mv.js";
+import { remove } from "./fs/rm.js";
+
 import * as helpers from "./utils/helpers.js";
 import { currentlyInMessage } from "./utils/currentlyInMsg.js";
 
@@ -44,22 +51,62 @@ export const commandsListener = (username, homeDir) => {
             break;
           }
           case "cat": {
-            console.log("cat");
+            if (args.length > 0) {
+              const filePath = args.join(" ").toString();
+              await cat(filePath);
+            } else {
+              console.log(helpers.invalidInput);
+            }
+            break;
           }
           case "add": {
-            console.log("add");
+            if (args.length > 0) {
+              const filePath = args.join(" ").toString();
+              await add(filePath);
+            } else {
+              console.log(helpers.errorMessage);
+            }
+            break;
           }
           case "rn": {
-            console.log("cp");
+            if (args.length > 0) {
+              const filePath = args[0].toString();
+              const newFilePath = args[1].toString();
+              await rn(filePath, newFilePath);
+            } else {
+              console.log(helpers.invalidInput);
+            }
+            break;
           }
           case "cp": {
-            console.log("cp");
+            if (args.length > 0) {
+              const filePath = args[0].toString();
+              const filePathCopy = args[1] ? args[1].toString() : filePath;
+              await cp(filePath, filePathCopy);
+            } else {
+              console.log(helpers.invalidInput);
+            }
+            break;
           }
           case "mv": {
-            console.log("mv");
+            if (args.length > 0) {
+              const filePath = args[0].toString();
+              const filePathMove = args[1] ? args[1].toString() : filePath;
+              console.log(filePath, filePathMove);
+              await mv(filePath, filePathMove);
+            } else {
+              console.log("mv", helpers.invalidInput);
+            }
+            break;
           }
           case "rm": {
-            console.log("rm");
+            if (args.length === 1) {
+              const filePath = args[0];
+              await remove(filePath);
+            } else {
+              console.log(helpers.invalidInput);
+            }
+            break;
           }
           case "hash": {
             console.log("hash");
