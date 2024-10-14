@@ -11,6 +11,10 @@ import { cp } from "./fs/cp.js";
 import { mv } from "./fs/mv.js";
 import { remove } from "./fs/rm.js";
 
+import { osInfo } from "./os/osInfo.js";
+
+import { hash } from "./hash/hash.js";
+
 import * as helpers from "./utils/helpers.js";
 import { currentlyInMessage } from "./utils/currentlyInMsg.js";
 
@@ -108,8 +112,18 @@ export const commandsListener = (username, homeDir) => {
             }
             break;
           }
+          case "os": {
+            if (args.length > 0 && args[0].startsWith("--")) {
+              osInfo(args[0]);
+            }
+            break;
+          }
           case "hash": {
-            console.log("hash");
+            if (args.length > 0) {
+              const filePath = args.join(" ");
+              await hash(filePath);
+            }
+            break;
           }
           case "compress": {
             console.log("compress");
