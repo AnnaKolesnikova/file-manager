@@ -15,6 +15,9 @@ import { osInfo } from "./os/osInfo.js";
 
 import { hash } from "./hash/hash.js";
 
+import { compress } from "./zip/compress.js";
+import { decompress } from "./zip/decompress.js";
+
 import * as helpers from "./utils/helpers.js";
 import { currentlyInMessage } from "./utils/currentlyInMsg.js";
 
@@ -126,10 +129,24 @@ export const commandsListener = (username, homeDir) => {
             break;
           }
           case "compress": {
-            console.log("compress");
+            if (args.length === 2) {
+              const fileToCompress = args[0].toString();
+              const compressedFile = args[1].toString();
+              await compress(fileToCompress, compressedFile);
+            } else {
+              console.log(helpers.invalidInput);
+            }
+            break;
           }
           case "decompress": {
-            console.log("decompress");
+            if (args.length === 2) {
+              const fileToDecompress = args[0].toString();
+              const decompressedFile = args[1].toString();
+              await decompress(fileToDecompress, decompressedFile);
+            } else {
+              console.log(helpers.invalidInput);
+            }
+            break;
           }
           default: {
             console.log("default", helpers.invalidInput);
